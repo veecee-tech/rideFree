@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+
+{% block title %}
+Welcome|Dashboard
+{% endblock title %}
+
+
+
+{% block content %}
+<br>
+<p>Wanna Book a Ride? Place Order <a href="{% url 'place' %}" class="btn btn-success">Here</a></p>
+{% include 'includes/bookerhomecontent.html' %}
+{% endblock content %}
+
+

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}
+Welcome|Dashboard
+{% endblock title %}
+
+
+{% block content %}
+
+<style>
+    
+    p{
+        font-weight: bold;
+        text-transform: uppercase;
+        color:grey;
+    }
+    span{
+        font-weight: .5rem;
+        text-transform: none;
+    }
+td:nth-of-type(2) p{
+        text-align: center;
+        color:grey;
+        text-transform: none;
+        font-weight: none;
+        
+    }
+    
+</style>
+    <div class="col-md-4 col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                  Order Detail
+            </div>
+            <div class="card-body">
+                
+                <table>
+                    <tr>
+                        <td><p>Booking ID:</p></td>
+                        <td><p>{{order.booking_id}}</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Source:</p></td>
+                        <td><p>{{order.source}}</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>destination:</p></td>
+                        <td><p>{{order.destination}}</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>pick up time:</p></td>
+                        <td><p>{{order.pick_up_time}}</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>pick up date:</p></td>
+                        <td><p>{{order.pick_up_date}}</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>price:</p></td>
+                        <td><p>{{order.price}}</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>order status:</p></td>
+                        <td><p>{{order.order_status}}</p></td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div class="card-footer" style="display: flex; justify-content: center;">
+                <div><a href="{% url 'cancel_order' order.booking_id %}" class="btn btn-warning btn-sm m-2">Cancel Order</a></div>
+                <div><a href="" class="btn btn-danger btn-sm m-2">Delete Order</a></div>
+            </div>
+
+    </div>
+  
+
+  
+
+{% endblock content %}
+
+

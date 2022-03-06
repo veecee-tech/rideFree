@@ -1,0 +1,1 @@
+web: gunicorn book_a_ride.wsgi --log-file -

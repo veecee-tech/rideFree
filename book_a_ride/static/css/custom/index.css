@@ -1,0 +1,60 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    /* overflow: hidden; */
+}
+
+#background_body{
+    
+    background: url('../../images/bikehome.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#background_body > .overlay{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 1111;
+}
+.index_content{
+   display: grid;
+   grid-template-columns: 1fr;
+   place-content: center;
+   height: 100vh; 
+   justify-items: center;
+   opacity:1 !important;
+   z-index: 9999;
+}
+.index_content > .title{
+    
+    color: white;
+    z-index: 9999;
+    font-size: 60px;
+    /* font-weight: bold; */
+}
+
+.lead{
+    opacity: 1 !important;
+    z-index: 9999;
+}
+.lead > .btn{
+    width: 150px;
+    padding: 10px;
+    opacity: 1 !important;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 929px) {
+    .index_content > .title{
+      
+        text-align: center;
+        justify-content: justify;
+        justify-self: justify;
+       
+        
+    }
+}
