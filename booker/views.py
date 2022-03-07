@@ -55,12 +55,16 @@ def place_order_view(request):
 # @login_required()
 
 def myOrders(request):
-    orders = Orders.objects.filter(booker=request.user)
+    try:
+        orders = Orders.objects.filter(booker=request.user)
+    except:
+        return None
+    
 
-    if orders:
-        context = {
-            'orders': orders
-        }
+   
+    context = {
+        'orders': orders
+    }
 
     return render(request, 'booker/manage-orders.html', context)
 
@@ -70,13 +74,14 @@ def order_detail(request, booking_id):
     try:
         order = Orders.objects.get(booking_id=booking_id)
 
-        context = {
+        
+    except:
+        return None
+    
+    context = {
             'order': order
         }
-        return render(request, 'booker/order-details.html', context)
-    except Exception as e:
-
-        pass
+    return render(request, 'booker/order-details.html', context)
 @login_required
 def cancel_order(request, booking_id):
 
