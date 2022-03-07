@@ -37,7 +37,7 @@ class Orders(models.Model):
     booker = models.ForeignKey(User, related_name='booker', on_delete = models.CASCADE)
     source = models.ForeignKey(Source, on_delete=models.CASCADE)
     destination = models.ForeignKey(Destination, on_delete=models.CASCADE)
-    pick_up_time = models.TimeField(auto_now=False, auto_now_add=False, default=timezone.now())
+    pick_up_time = models.TimeField(auto_now=False, auto_now_add=False)
     pick_up_date = models.DateField(auto_now=False, auto_now_add=False)
     address = models.TextField(max_length=50)
     order_status = models.CharField(choices=ORDER_CHOICES, default='pending', max_length=50)
