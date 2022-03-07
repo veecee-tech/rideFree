@@ -75,7 +75,7 @@ def order_detail(request, booking_id):
         return render(request, 'booker/order-details.html', context)
     except Exception as e:
 
-        return
+        pass
 @login_required
 def cancel_order(request, booking_id):
 

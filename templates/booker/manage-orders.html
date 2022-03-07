@@ -21,11 +21,14 @@ Welcome|Dashboard
     </thead>
     <tbody>
       {% for order in orders %}
+      {% if order.booking_id %}
       <tr>
-        <td>{{order.booking_id}}</td>
+        <td> {{order.booking_id}}</td>
         <td>{{order.order_status}}</td>
         <td><a href="{% url 'order_detail' order.booking_id %}" class="btn btn-success">details</a></td>
       </tr>
+      {% endif %}
+      
       {% endfor %}
       
       
