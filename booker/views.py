@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from orders.models import Orders, SourceDestination
 from .forms import *
 from django_currentuser.middleware import get_current_authenticated_user
@@ -57,8 +57,8 @@ def place_order_view(request):
 def myOrders(request):
     try:
         orders = Orders.objects.filter(booker=request.user)
-    except:
-        return None
+    except Exception as e:
+        raise e
     
 
    
@@ -70,23 +70,23 @@ def myOrders(request):
 
 @login_required
 def order_detail(request, booking_id):
-
-    try:
-        order = Orders.objects.get(booking_id=booking_id)
-
-        
-    except:
-        return None
     
+    try:
+        order = get_object_or_404(Orders,booking_id=booking_id)
+
+    except Exception as e:
+        raise e
     context = {
             'order': order
         }
     return render(request, 'booker/order-details.html', context)
+
 @login_required
 def cancel_order(request, booking_id):
-
-    order = Orders.objects.get(booking_id=booking_id)
-
+    try:
+        order = get_object_or_404(Orders,booking_id=booking_id)
+    except Exception as e:
+        raise e
     order.order_status = 'cancelled'
     order.save()
     return redirect('manage-orders')
