@@ -57,9 +57,10 @@ def place_order_view(request):
 def myOrders(request):
     orders = Orders.objects.filter(booker=request.user)
 
-    context = {
-        'orders': orders
-    }
+    if orders:
+        context = {
+            'orders': orders
+        }
 
     return render(request, 'booker/manage-orders.html', context)
 
