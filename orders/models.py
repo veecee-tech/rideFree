@@ -14,12 +14,12 @@ class SourceDestination(models.Model):
     
 
 class Source(models.Model):
-    name = models.CharField(max_length=50, editable=False)
+    name = models.CharField(max_length=50,unique=True, editable=False)
     def __str__(self):
         return self.name
 
 class Destination(models.Model):
-    name = models.CharField(max_length=50, editable=False)
+    name = models.CharField(max_length=50,unique=True, editable=False)
     def __str__(self):
         return self.name
     
@@ -33,6 +33,7 @@ class Orders(models.Model):
         ('completed', 'completed'),
         ('cancelled', 'cancelled')
     )
+
     booking_id = models.CharField(max_length=6, blank=True, null=True, unique=True)
     booker = models.ForeignKey(User, related_name='booker', on_delete = models.CASCADE)
     source = models.ForeignKey(Source, on_delete=models.CASCADE)

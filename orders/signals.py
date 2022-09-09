@@ -6,9 +6,20 @@ import uuid
 
 @receiver(post_save, sender=SourceDestination)
 def create_profile(sender, instance, created, **kwargs):
+
+    qs = Source.objects.filter(name=instance.source)
+    qr = Destination.objects.filter(name=instance.destination)
     if created:
-        Source.objects.create(name=instance.source)
-        Destination.objects.create(name=instance.destination)
+        
+        if qs.exists():
+            pass
+        else:
+            Source.objects.create(name=instance.source)
+        if qr.exists():
+            pass
+        else:
+            Destination.objects.create(name=instance.destination)
+        
     else:
         pass
 
