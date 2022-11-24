@@ -19,7 +19,7 @@
     background-color: rgba(0, 0, 0, .5);
     z-index: 1111;
 }
-.index_content{
+.login_content{
    display: grid;
    grid-template-columns: 1fr;
    place-content: center;
@@ -28,33 +28,7 @@
    opacity:1 !important;
    z-index: 9999;
 }
-.index_content > .title{
-    
-    color: white;
-    z-index: 9999;
-    font-size: 60px;
-    /* font-weight: bold; */
+.card{
+    z-index:9999;
 }
 
-.lead{
-    opacity: 1 !important;
-    z-index: 9999;
-}
-.lead > .btn{
-    width: 150px;
-    padding: 10px;
-    opacity: 1 !important;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-@media screen and (max-width: 929px) {
-    .index_content > .title{
-      
-        text-align: center;
-        justify-content: justify;
-        justify-self: justify;
-       
-        
-    }
-}
