@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block title %}
+Welcome|Dashboard
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="container col-md-12">
+    <h2>My Current Order</h2>
+    <hr>
+    {% if order  %}
+    <div class="table-responsive">
+            <table class="table table-striped table-hover table-sm">
+                <thead class="bg-default">
+                    
+                        
+                    
+                <tr>
+                    
+                    <th>Source</th>
+                    <th>Destination</th>
+                    <th>Pick Up Time</th>
+                    <th>Pick Up Date</th>
+
+                </tr>
+                </thead>
+                <tbody>
+               
+                {% if order.booking_id %}
+                <tr>
+                    
+                    <td> {{order.source}}</td>
+                    <td>{{order.destination}}</td>
+                    <td>{{order.pick_up_time}}</td>
+                    <td>{{order.pick_up_date}}</td>
+                </tr>
+                {% endif %}
+                
+                
+                
+                </tbody>
+            </table>
+        </div>
+    
+        <div class="row mt-5">
+          
+            <form method="POST" class="form">
+                {% csrf_token %}
+                <div class="row">
+                        <div class="form-group">
+                            <input type="text" name="booking_id" class="form-control" required>
+                        </div>
+                </div>
+                
+                <div class="d-grid">
+                    <button class="btn btn-primary mt-5" type="submit">
+                        Mark As Complete
+                    </button>
+                </div>
+                
+                
+            </form>
+        </div>
+        {% else %}
+        <h3>
+            No Pending Accepted Order
+        </h3>
+        {% endif %}
+
+        {% include 'partials/_alerts.html' %}
+
+</div>
+  
+
+{% endblock content %}
+
+

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from orders.models import Orders, SourceDestination
 from .forms import *
 from django_currentuser.middleware import get_current_authenticated_user
@@ -34,26 +35,25 @@ def place_order_view(request):
     }
     return render(request, "booker/place-order.html", context)
 
-# @login_required 
-# def booker_profile_view(request):
+@login_required 
+def booker_profile_view(request):
     
-#     forms = BookerProfileForm(instance=request.user.adviserprofile)
+    forms = BookerProfileForm(instance=request.user.bookerprofile)
     
-#     if request.method == "POST":
-#         forms = BookProfileForm(request.POST, request.FILES or None, instance=request.user.bookerprofile)
+    if request.method == "POST":
+        forms = BookerProfileForm(request.POST, instance=request.user.bookerprofile)
 
-#         if forms.is_valid():
-#             forms.save()
-#             messages.success(request, "Edit adviser Info Successfully!")
-#             return redirect("update-adviser")
+        if forms.is_valid():
+            forms.save()
+            messages.success(request, "Edit profile Info Successfully!")
+            return redirect("update-profile")
 
-#     context = {
-#         "forms": forms,
-#     }
-#     return render(request, "booker/profile.html", context)
+    context = {
+        "forms": forms,
+    }
+    return render(request, "booker/profile.html", context)
 
-# @login_required()
-
+@login_required
 def myOrders(request):
     try:
         orders = Orders.objects.filter(booker=request.user)
@@ -90,7 +90,3 @@ def cancel_order(request, booking_id):
     order.order_status = 'cancelled'
     order.save()
     return redirect('manage-orders')
-
-@login_required
-def fund_wallet(request):
-    return render(request, 'booker/fund.html')

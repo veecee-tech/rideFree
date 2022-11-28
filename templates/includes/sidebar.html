@@ -6,22 +6,32 @@
         <div> <a href="#" class="nav_logo"> <i class='nav_logo-icon' style="font-size:40px; margin-top:-10px; margin-left:-5px">R</i> <span class="nav_logo-name">RideFree</span> </a>
             <div class="nav_list"> 
 
-                <a href="{% url 'booker-home' %}" class="nav_link {% if 'home' in request.get_full_path %}active{% endif %}"> 
-                    <i class='bx bx-grid-alt nav_icon'></i> 
-                    <span class="nav_name">Dashboard</span> 
-                </a> 
-                <a href="{% url 'place' %}" class="nav_link {% if 'place-order' in request.get_full_path %}active{% endif %}"> 
-                    <i class='bx bx-mouse nav_icon'></i> 
-                    <span class="nav_name">Book a Ride</span> 
-                </a> 
-                <a href="{% url 'manage-orders' %}" class="nav_link {% if 'manage' in request.get_full_path %}active{% endif %}"> 
-                    <i class='bx bx-message-square-detail nav_icon'></i> 
-                    <span class="nav_name">My Orders</span> 
-                </a> 
-                <a href="{% url 'fund-wallet' %}" class="nav_link {% if 'fund' in request.get_full_path %}active{% endif %}"> 
-                    <i class='bx bx-bookmark nav_icon'></i> 
-                    <span class="nav_name">Fund Wallet</span> 
-                </a> 
+                {% if request.user.role == 3 %}
+                    <a href="{% url 'booker-home' %}" class="nav_link {% if 'home' in request.get_full_path %}active{% endif %}"> 
+                        <i class='bx bx-grid-alt nav_icon'></i> 
+                        <span class="nav_name">Dashboard</span> 
+                    </a> 
+                    <a href="{% url 'place' %}" class="nav_link {% if 'place-order' in request.get_full_path %}active{% endif %}"> 
+                        <i class='bx bx-mouse nav_icon'></i> 
+                        <span class="nav_name">Book a Ride</span> 
+                    </a> 
+                    <a href="{% url 'manage-orders' %}" class="nav_link {% if 'manage' in request.get_full_path %}active{% endif %}"> 
+                        <i class='bx bx-message-square-detail nav_icon'></i> 
+                        <span class="nav_name">My Orders</span> 
+                    </a> 
+                    <a href="{% url 'update-profile' %}" class="nav_link {% if 'profile' in request.get_full_path %}active{% endif %}"> 
+                        <i class='bx bx-user nav_icon'></i> 
+                        <span class="nav_name">Profile</span> 
+                    </a> 
+                {% else %}
+                    <a href="{% url 'rider-home' %}" class="nav_link {% if 'home' in request.get_full_path %}active{% endif %}"> 
+                        <i class='bx bx-grid-alt nav_icon'></i> 
+                        <span class="nav_name">Dashboard</span> 
+                    </a>
+                {% endif %}
+
+                
+                
                 <a href="{% url 'change-password' %}" class="nav_link {% if 'change' in request.get_full_path %}active{% endif %}"> <i class='bx bx-wrench nav_icon'></i> 
                     <span class="nav_name">Settings</span></a>   
                

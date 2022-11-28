@@ -8,7 +8,7 @@ urlpatterns = [
     path('manage/', myOrders, name='manage-orders'),
     path('manage/order/<str:booking_id>', order_detail, name='order_detail'),
     path('manage/order/cancel/<str:booking_id>', cancel_order, name='cancel_order'),
-    path('fund/wallet', fund_wallet, name='fund-wallet'),
+    path('profile/', booker_profile_view, name='update-profile'),
 ]
 
 

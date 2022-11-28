@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block title %}
+Welcome|Dashboard
+{% endblock title %}
+
+<style>
+    .card{
+        margin: 0px auto !important;
+    }
+    form > *{
+        margin: 0px;
+    }
+</style>
+
+{% block content %}
+
+<br>
+<div class="card col-md-6" style="margin: 0px auto;">
+
+    <div class="card-header bg-primary text-white text-center">
+        Update Profile
+    </div>
+    <div class="card-body" style="background: rgba(0,0,255,.1);">
+        <form action="{% url 'update-profile' %}" method="post" class="container col-md-12">
+
+            {% csrf_token %}
+            {% comment %} {{ forms|crispy }} {% endcomment %}
+            <div class="row">
+                <div class="form-group col-md-12 mb-0">
+                    {{ forms.first_name|as_crispy_field }}
+                </div>
+               
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12 mb-0">
+                    {{ forms.last_name|as_crispy_field }}
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12 mb-0">
+                    {{ forms.gender|as_crispy_field }}
+                </div>
+                
+            </div>
+            <div class="d-grid">
+                <input type="submit" class="btn btn-primary" value="Update">
+    
+            </div>
+        </form>
+    </div>
+
+</div>
+
+{% endblock content %}
+
+

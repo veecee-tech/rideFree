@@ -1,0 +1,61 @@
+
+<style>
+    *{
+        box-sizing: border-box;
+    }
+    .cardwrapper{
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .cardcontent{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: 300px;
+        max-width: 300px;
+        min-height: 200px;
+        max-height: 200px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        {% comment %} background: linear-gradient(to bottom, blue, rgba(0,0,255, .5)); {% endcomment %}
+        margin: 5px;
+        border-radius: 10px;
+       color: rgba(0,0,255,.6);
+    }
+    .cardcontent > p{
+        font-weight: bold;
+        font-size: 34px;
+    }
+</style>
+
+
+<div class='container'>
+
+   <div class='container cardwrapper'>
+    
+        
+        <div class="cardcontent">
+            <p>Recent Orders</p>
+            <h2>{{recent_orders_placed}}</h2>
+            <a href="{% url 'recent_orders' %}" class="btn btn-primary mt-3">View</a>
+        </div>
+
+        <div class="cardcontent">
+            <p style="font-size:24px;">My Pending Orders</p>
+            <h2>{{accepted}}</h2>
+            <a href="{% url 'accepted_order' %}" class="btn btn-primary mt-3">View</a>
+
+        </div>
+
+        <div class="cardcontent">
+            <p>Completed Orders</p>
+            <h2>{{completed}}</h2>
+            <a href="" class="btn btn-primary mt-3">View</a>
+
+        </div>
+       
+   </div>
+
+</div>

@@ -12,6 +12,7 @@ class BookerProfile(models.Model):
 
     user = models.OneToOneField(
         User,
+        default=User,
         verbose_name="User",
         on_delete=models.CASCADE,
         related_name='bookerprofile', null=False)

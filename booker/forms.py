@@ -1,5 +1,6 @@
 from django import forms
 from orders.models import Orders, SourceDestination
+from booker.models import BookerProfile
 from django_currentuser.middleware import get_current_authenticated_user
 
 
@@ -31,3 +32,11 @@ class OrderForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class BookerProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = BookerProfile()
+
+        fields = "__all__"
+        exclude = ['user']

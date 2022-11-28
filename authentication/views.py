@@ -43,9 +43,11 @@ def user_login(request):
             user = authenticate(username=username, password=password)
             if user:
                 login(request, user)
-
+                if request.user.role == 2:
+                    return redirect('rider-home')
                 if 'next' in request.path:
                     return redirect(request.get['next'])
+                
                 return redirect("booker-home")
                 
             else:

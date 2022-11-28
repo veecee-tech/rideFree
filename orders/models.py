@@ -28,6 +28,7 @@ class Orders(models.Model):
     
 
     ORDER_CHOICES = (
+        
         ('pending', 'pending'),
         ('received', 'received'),
         ('completed', 'completed'),
