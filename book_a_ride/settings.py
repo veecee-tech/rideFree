@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'booker',
     'orders',
     "django_readonly_field",
+    "django.contrib.humanize"
 ]
 
 MIDDLEWARE = [

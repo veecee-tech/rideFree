@@ -5,7 +5,7 @@ from orders.models import Orders
 
 
 def dashboard(request):
-    recent_orders_placed = Orders.objects.filter(payed=True, order_status="pending")
+    recent_orders_placed = Orders.objects.filter(payed=False, order_status="pending")
     accepted = Orders.objects.filter(rider = request.user, order_status="received")
     completed = Orders.objects.filter(rider=request.user, order_status='completed')
 
@@ -20,7 +20,7 @@ def dashboard(request):
     return render(request, 'rider/home.html', context)
 
 def recent_orders(request):
-    recent_orders_placed = Orders.objects.filter(payed=True, order_status="pending")
+    recent_orders_placed = Orders.objects.filter(payed=False, order_status="pending")
 
     context = {
         'orders': recent_orders_placed
@@ -57,7 +57,7 @@ def accepted_order(request):
         
     
     try:
-        accepted_order = Orders.objects.get(rider = request.user, order_status="received")
+        accepted_order = Orders.objects.filter(rider = request.user, order_status="received")
     except Orders.DoesNotExist:
         accepted_order = None
 
@@ -65,3 +65,28 @@ def accepted_order(request):
         'order': accepted_order
     }
     return render(request, 'rider/accepted.html', context)
+
+
+def pending_orders(request):
+    try:
+        pending_order = Orders.objects.filter(rider = request.user, order_status="received")
+    except Orders.DoesNotExist:
+        pending_order = None
+
+    context = {
+        'order': pending_order
+    }
+
+    return render(request, 'rider/pendingorders.html', context)
+
+def completed_orders(request):
+    try:
+        completed_order = Orders.objects.filter(rider = request.user, order_status="completed")
+    except Orders.DoesNotExist:
+        completed_order = None
+
+    context = {
+        'order': completed_order
+    }
+
+    return render(request, 'rider/completedorders.html', context)

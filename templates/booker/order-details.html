@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
+{% load humanize %}
 
 {% block title %}
 Welcome|Dashboard
@@ -29,8 +30,9 @@ td:nth-of-type(2) p{
     }
     
 </style>
-    <div class="col-md-4 col-sm-12">
-        <div class="card">
+    <div class="col-md-12 col-sm-12"
+     style="display:flex; place-content: center">
+        <div class="card col-md-8">
             <div class="card-header">
                   Order Detail
             </div>
@@ -59,7 +61,7 @@ td:nth-of-type(2) p{
                     </tr>
                     <tr>
                         <td><p>price:</p></td>
-                        <td><p>{{order.price}}</p></td>
+                        <td><p>{{order.price | intcomma}}</p></td>
                     </tr>
                     <tr>
                         <td><p>order status:</p></td>
@@ -69,11 +71,48 @@ td:nth-of-type(2) p{
                 </table>
             </div>
             <div class="card-footer" style="display: flex; justify-content: center;">
+                {% if order.order_status == 'completed' %}
+                <div><a href="{% url 'manage-orders' %}" class="btn btn-warning btn-sm m-2">Go Back</a></div>
+                {% else %}
                 <div><a href="{% url 'cancel_order' order.booking_id %}" class="btn btn-warning btn-sm m-2">Cancel Order</a></div>
-                <div><a href="" class="btn btn-danger btn-sm m-2">Delete Order</a></div>
+                <form>
+                    <script src="https://js.paystack.co/v1/inline.js"></script>
+                    <button type="button" class="btn btn-success btn-sm m-2" onclick="payWithPaystack()"> Pay </button> 
+                  </form>
+                {% endif %}
+                
             </div>
 
     </div>
+
+    <!-- place below the html form -->
+<script>
+    function payWithPaystack(){
+        var price = '{{order.price}}'
+      var handler = PaystackPop.setup({
+        key: 'pk_test_33979d8406ca3c362f770abda043ba62628807b6',
+        email: 'customer@email.com',
+        amount: price,
+        ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+        metadata: {
+           custom_fields: [
+              {
+                  display_name: "Mobile Number",
+                  variable_name: "mobile_number",
+                  value: "+2348012345678"
+              }
+           ]
+        },
+        callback: function(response){
+            alert('success. transaction ref is ' + response.reference);
+        },
+        onClose: function(){
+            alert('window closed');
+        }
+      });
+      handler.openIframe();
+    }
+  </script>
   
 
   

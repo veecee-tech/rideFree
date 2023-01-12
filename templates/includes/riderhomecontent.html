@@ -45,15 +45,24 @@
         <div class="cardcontent">
             <p style="font-size:24px;">My Pending Orders</p>
             <h2>{{accepted}}</h2>
-            <a href="{% url 'accepted_order' %}" class="btn btn-primary mt-3">View</a>
+            <a href="{% url 'pending_orders' %}" class="btn btn-primary mt-3">View</a>
 
         </div>
 
         <div class="cardcontent">
             <p>Completed Orders</p>
             <h2>{{completed}}</h2>
-            <a href="" class="btn btn-primary mt-3">View</a>
+            <a href="{% url 'completed_orders' %}" class="btn btn-primary mt-3">View</a>
+        </div>
 
+        <div class="card-footer mt-5">
+            <button class="btn btn-secondary">
+
+                <a class="" href="{% url 'accepted_order' %}">
+                    Mark As Completed
+                </a>
+
+            </button>
         </div>
        
    </div>
