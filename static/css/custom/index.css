@@ -7,9 +7,10 @@
 
 #background_body{
     
-    background: url('../../images/bikehome.jpg');
+    background: url('../../images/backlogo.png');
     background-size: cover;
     background-repeat: no-repeat;
+    object-fit: cover;
     background-position: center;
 }
 #background_body > .overlay{

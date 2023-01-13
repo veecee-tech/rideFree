@@ -27,6 +27,9 @@ Welcome|Dashboard
     <div class="card-body" style="background: rgba(0,0,255,.1);">
         <form  method="post" class="container col-md-12">
 
+            <div class="row">
+                {% include 'partials/_alerts.html' %}
+            </div>
             {% csrf_token %}
             {% comment %} {{ forms|crispy }} {% endcomment %}
             <div class="row">
